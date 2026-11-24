@@ -1,5 +1,5 @@
 // One-Liner Laugh Lab — u-suroso-69-one-liner-laugh-lab-6ccf3aae
-// Writes a single funny one-liner answering the prompt
+// Writes one funny line answering the prompt
 // "the excuse a robot vacuum gives after eating a sock"
 // to output/entry.txt. Deterministic: fixed string, no randomness,
 // no timestamps, no network, Node 22 stdlib only.
@@ -9,7 +9,8 @@ import { join } from "node:path";
 
 const ENTRY = "It was on the floor, Your Honor. I rest my case.";
 
-// The gate: 1-200 UTF-8 characters, one line, not only whitespace.
+// Gate: 1-200 UTF-8 characters, one line, not only whitespace.
+// Verified: the entry below is 48 characters, one line, no newline.
 if (ENTRY.length < 1 || ENTRY.length > 200) {
   throw new Error(`entry must be 1-200 characters, got ${ENTRY.length}`);
 }
@@ -19,7 +20,7 @@ if (/\n|\r/.test(ENTRY) || ENTRY.trim().length === 0) {
 
 // Write next to the repo (output/entry.txt) and, when the harness
 // mounts /output, there too. Same bytes in both places, no trailing
-// newline so the file is exactly the one line.
+// newline, so the file is exactly the one line.
 for (const dir of ["output", "/output"]) {
   try {
     mkdirSync(dir, { recursive: true });
